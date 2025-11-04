@@ -9,6 +9,7 @@ dist/
 
 # Файлы базы данных
 *.db
+*.json
 *.sqlite
 *.sqlite3
 
@@ -36,6 +37,6 @@ temp/
 Thumbs.db
 
 # Генерируемые файлы
-/static/images/products/*.webp
-/static/images/products/*.png
-!/static/images/products/default.svg
+static/images/*.webp
+static/images/*.png
+!/static/images/default.svg
