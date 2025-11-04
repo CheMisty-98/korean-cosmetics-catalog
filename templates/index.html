@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<h1>Онлайн-каталог корейской косметики</h1>
+
+<div class="admin-access">
+    <button id="login-btn" class="hidden">Вход для админа</button>
+</div>
+
+<div class="menu-container">
+    <ul class="menu">
+    <li>
+        <a class="in-stock" href=#>В наличии</a>
+    </li>
+    <li>
+        <a class="submenu" href=#>Бренды
+        </a>
+        <ul class="brands">
+        </ul>
+    </li>
+    <li>
+        <a class="submenu" href=#>Категории</a>
+        <ul class="category">
+        </ul>
+    </li>
+    </ul>
+    <form method="GET" action="/api/search">
+        <label for="site-search">Поиск:</label>
+        <input type="search" id="site-search" name="q" placeholder="Поиск продукции">
+        <button type="submit">Поиск</button>
+    </form>
+</div>
+
+<div class="filter-controls">
+    <button id="reset-filter">Сброс фильтров</button>
+</div>
+
+<div class="products-container">
+</div>
+
+<div class="bottom-container">
+</div>
+
+
+<script src="/static/js/script.js"></script>
+
+<!-- Модальное окно для входа -->
+<div id="login-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Вход для администратора</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Логин:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+</div>
+
+<!-- Модальное окно для добавления/редактирования продукта -->
+<div id="product-form-modal" class="modal">
+    <div class="modal-content" style="max-width: 600px;">
+        <span class="close">&times;</span>
+        <h2 id="product-form-title">Добавить продукт</h2>
+        <form id="product-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="product-name">Название *</label>
+                    <input type="text" id="product-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-alt-name">Альтернативное название</label>
+                    <input type="text" id="product-alt-name" name="alt_name">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="product-brand">Бренд *</label>
+                    <select id="product-brand" name="brand" required>
+                        <option value="">Выберите бренд</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-category">Категория *</label>
+                    <select id="product-category" name="category" required>
+                        <option value="">Выберите категорию</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="product-description">Описание</label>
+                <textarea id="product-description" name="description" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="product-tags">Теги (через запятую)</label>
+                <input type="text" id="product-tags" name="tags" placeholder="тег1, тег2, тег3">
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="product-in-stock" name="in_stock" checked>
+                    <span>В наличии</span>
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" id="product-submit-btn">Добавить продукт</button>
+                <button type="button" id="product-cancel-btn">Отмена</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="product-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+           
+        </div>
+    </div>
+</div>
+
+
+<div id="notification" class="notification hidden">
+    <div class="notification-content">
+        <span class="notification-icon" id="notification-icon">✓</span>
+        <span id="notification-text"></span>
+    </div>
+    <button class="notification-close" onclick="hideNotification()">×</button>
+</div>
+</body>
+</html>
